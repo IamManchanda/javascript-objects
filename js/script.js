@@ -5,12 +5,19 @@
 /* eslint-disable */
 'use strict';
 
-var myFunction = function () {}
-console.log(myFunction.prototype);
-console.log(myFunction.prototype.__proto__);
+function Cat(name, color) {
+  this.name = name;
+  this.color = color;
+}
 
-var cat = {
-  name: 'Fluffy',
-};
+var fluffy = new Cat('Fluffy', 'White');
+Cat.prototype.age = 3;
+var muffin = new Cat('Muffin', 'Brown');
 
-console.log(cat.__proto__);
+console.log(Cat.prototype);
+
+console.log(fluffy.__proto__);
+console.log(Cat.prototype === fluffy.__proto__); // true, Same Instance
+
+console.log(muffin.__proto__);
+console.log(Cat.prototype === muffin.__proto__); // true, Same Instance
