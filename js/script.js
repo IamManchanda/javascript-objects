@@ -5,40 +5,41 @@
 /* eslint-disable */
 'use strict';
 
-// Original and Behind the scenes stuff
-var cat = Object.create(Object.prototype, {
+var cat = {
   name: {
-    value: 'Fluffy',
-    enumerable: true,
-    writable: true,
-    configurable: true,
+    first: 'Fluffy',
+    last: 'Cluffy',
   },
-  color: {
-    value: 'White',
-    enumerable: true,
-    writable: true,
-    configurable: true,
-  },
+  color: 'White',
+};
+
+Object.defineProperty(cat, 'name', {
+  // writable: false,
+  // enumerable: false,
+  // configurable: false,
 });
-console.log(cat);
 
-// Legacy Syntactic Sugar
-function Cat2008(name, color) {
-  this.name = name;
-  this.color = color;
-}
-
-var cat2008 = new Cat2008('Fluffy', 'White');
-console.log(cat2008);
-
-// Modern Syntactic Sugar
-// PS: JavaScript don't have classes!
-class Cat2018 {
-  constructor(name, color) {
-    this.name = name;
-    this.color = color;
+Object.defineProperty(cat, 'fullName', {
+  get: function () {
+    return `${this.name.first} ${this.name.last}`;
+  },
+  set: function (value) {
+    var nameParts = value.split(' ');
+    this.name.first = nameParts[0];
+    this.name.last = nameParts[1];
   }
-}
+});
 
-const cat2018 = new Cat2018('Fluffy', 'White');
-console.log(cat2018);
+cat.fullName = 'Muffin Top';
+
+// cat.name.first = 'Scratchy';
+// console.log(Object.getOwnPropertyDescriptor(cat, 'name'));
+
+// for (var propertyName in cat) {
+//   console.log(`${propertyName}: ${cat[propertyName]}`);
+// }
+// console.log(JSON.stringify(cat));
+
+// delete cat.name;
+
+console.log(cat);
