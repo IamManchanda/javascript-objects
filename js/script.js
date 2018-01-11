@@ -5,41 +5,31 @@
 /* eslint-disable */
 'use strict';
 
-var cat = {
-  name: {
-    first: 'Fluffy',
-    last: 'Cluffy',
-  },
-  color: 'White',
-};
-
-Object.defineProperty(cat, 'name', {
-  // writable: false,
-  // enumerable: false,
-  // configurable: false,
-});
-
-Object.defineProperty(cat, 'fullName', {
+Object.defineProperty(Array.prototype, 'first', {
   get: function () {
-    return `${this.name.first} ${this.name.last}`;
-  },
-  set: function (value) {
-    var nameParts = value.split(' ');
-    this.name.first = nameParts[0];
-    this.name.last = nameParts[1];
+    return this[0];
   }
 });
 
-cat.fullName = 'Muffin Top';
+Object.defineProperty(Array.prototype, 'second', {
+  get: function () {
+    return this[1];
+  }
+});
 
-// cat.name.first = 'Scratchy';
-// console.log(Object.getOwnPropertyDescriptor(cat, 'name'));
+Object.defineProperty(Array.prototype, 'last', {
+  get: function () {
+    return this[this.length - 1];
+  }
+});
 
-// for (var propertyName in cat) {
-//   console.log(`${propertyName}: ${cat[propertyName]}`);
-// }
-// console.log(JSON.stringify(cat));
+// var colors = new Array('red', 'blue', 'green');
+// or, Syntactic sugar below:
+var colors = ['red', 'blue', 'green'];
+console.log(colors.first, colors.second, colors.last);
 
-// delete cat.name;
+// var numbers = new Array('one', 'two', 'three');
+// or, Syntactic sugar below:
+var numbers = ['one', 'two', 'three']
+console.log(numbers.first, numbers.second, numbers.last);
 
-console.log(cat);
