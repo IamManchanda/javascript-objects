@@ -5,25 +5,29 @@
 /* eslint-disable */
 'use strict';
 
-function Animal(voice) {
-  this.voice = voice || 'grunt';
+class Animal {
+  constructor(voice) {
+    this.voice = voice || 'grunt';
+  }
+
+  speak() {
+    console.log(this.voice);
+  }
 }
 
-Animal.prototype.speak = function () {
-  console.log(this.voice);
+class Cat extends Animal {
+  constructor(name, color) {
+    super('Meow');
+    this.name = name;
+    this.color = color;
+  }
 }
-
-function Cat(name, color) {
-  Animal.call(this, 'Meow');
-  this.name = name;
-  this.color = color;
-}
-
-Cat.prototype = Object.create(Animal.prototype);
-Cat.prototype.constructor = Cat;
 
 var fluffy = new Cat('Fluffy', 'White');
 console.log(fluffy);
+fluffy.speak();
 
 console.log(fluffy instanceof Cat);
 console.log(fluffy instanceof Animal);
+console.log(Object.keys(fluffy.__proto__.__proto__));
+console.log(fluffy.__proto__.__proto__.hasOwnProperty('speak'));
