@@ -15,16 +15,19 @@ Cat.prototype.age = 4;
 var fluffy = new Cat('Fluffy', 'White');
 var muffin = new Cat('Muffin', 'Brown');
 
-fluffy.age = 5;
+Cat.prototype = {
+  age: 5,
+};
+
+var snowbell = new Cat('Snowbell', 'White');
 
 console.log(fluffy);
-console.log(muffin);
-
 console.log(fluffy.age);
+
+console.log(muffin);
 console.log(muffin.age);
 
-console.log(Object.keys(fluffy));
-console.log(Object.keys(muffin));
+console.log(snowbell);
+console.log(snowbell.age)
 
-console.log(fluffy.hasOwnProperty('age'));
-console.log(muffin.hasOwnProperty('age'));
+console.log(Cat.prototype.age);
