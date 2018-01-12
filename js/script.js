@@ -10,14 +10,21 @@ function Cat(name, color) {
   this.color = color;
 }
 
+Cat.prototype.age = 4;
+
 var fluffy = new Cat('Fluffy', 'White');
-Cat.prototype.age = 3;
 var muffin = new Cat('Muffin', 'Brown');
 
-console.log(Cat.prototype);
+fluffy.age = 5;
 
-console.log(fluffy.__proto__);
-console.log(Cat.prototype === fluffy.__proto__); // true, Same Instance
+console.log(fluffy);
+console.log(muffin);
 
-console.log(muffin.__proto__);
-console.log(Cat.prototype === muffin.__proto__); // true, Same Instance
+console.log(fluffy.age);
+console.log(muffin.age);
+
+console.log(Object.keys(fluffy));
+console.log(Object.keys(muffin));
+
+console.log(fluffy.hasOwnProperty('age'));
+console.log(muffin.hasOwnProperty('age'));
